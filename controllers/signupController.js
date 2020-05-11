@@ -10,33 +10,34 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
-router.post("/studentSignup", function (req, res) {
+router.post("/userSignup", function (req, res) {
     res.send("Signup Please");
-    db.student.create({
+    db.user.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        password: req.body.password
-    }).then( newStudent => {
+        password: req.body.password,
+        zipcode: req.body.zipcode
+
+    }).then( newUser => {
    
         req.session.user = {
-            email: newStudent.email,
-            id: newStudent.studentId
+            email: newUser.email,
+            id: newUser.UserId
         };
         res.send("Welcome");
     }).catch(err => {
         console.log(err);
-        res.redirect("/studentSignup")
+        res.redirect("/userSignup")
     });
 });
 
 router.post("/tutorSignup", function (req, res) {
     res.send("Signup Please");
     db.tutor.create({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: req.body.password
+        levels: [],
+        skills:[],
+        picture:req.body.picture
     }).then( newTutor => {
    
         req.session.user = {

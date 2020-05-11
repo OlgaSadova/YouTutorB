@@ -12,9 +12,7 @@ router.get("/login", function (req, res) {
 
 router.post("/login", function (req, res) {
     res.send("Signup Please");
-    db.student.create({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
+    db.user.create({
         email: req.body.email,
         password: req.body.password
     }).then( newStudent => {
@@ -29,5 +27,5 @@ router.post("/login", function (req, res) {
         res.redirect("/studentSignup")
     });
 
-    
+
 });
