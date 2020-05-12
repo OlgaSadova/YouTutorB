@@ -35,7 +35,7 @@ router.post("/tutorSignup", function (req, res) {
     res.send("Signup Please");
     db.Teacher.create({
         levels: [],
-        skills:[],
+        skills: [],
         picture:req.body.picture
     }).then( newTutor => {
         req.session.user = {
