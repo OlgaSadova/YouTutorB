@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     Review.associate = function (models) {
         Review.belongsTo(models.Teacher);
     };
-    return Studentpost;
+    return Review;
 };
 
 
