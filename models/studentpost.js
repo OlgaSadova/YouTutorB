@@ -1,7 +1,7 @@
 
 
 module.exports = function (sequelize, DataTypes) {
-    const Studentpost = sequelize.define('studentpost', {
+    const Studentpost = sequelize.define('Studentpost', {
         level: { 
             type: DataTypes.STRING
         },
@@ -10,10 +10,10 @@ module.exports = function (sequelize, DataTypes) {
             validate:{
                 len: [100] // we should set maximun characters, not sure that 100 like here
             }
-        },
-        connect: {
-            //WILL GET FROM USER ID
         }
+        // connect: {
+        //     //WILL GET FROM USER ID
+        // }
 
     });
     Studentpost.associate = function (models) {

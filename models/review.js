@@ -1,7 +1,7 @@
 
 
 module.exports = function (sequelize, DataTypes) {
-    const Review = sequelize.define('review', {
+    const Review = sequelize.define('Review', {
         rating: { 
             type: DataTypes.STRING // (1-5)
         },
@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     Review.associate = function (models) {
         Review.belongsTo(models.Teacher);
     };
-    return Studentpost;
+    return Review;
 };
 
 
