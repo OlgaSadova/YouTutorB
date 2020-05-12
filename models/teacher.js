@@ -1,11 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
     const Teacher = sequelize.define('Teacher', {
         skills: {
-            type: DataTypes.ARRAY(DataTypes.STRING), // [JS, javaScript, HTML5, HTML , Java, C++, React, Go, jQuery, SQL]
+            type: DataTypes.ARRAY(DataTypes.STRING) // [JS, javaScript, HTML5, HTML , Java, C++, React, Go, jQuery, SQL]
         },
-        levels: {
-            type: DataTypes.ARRAY(DataTypes.STRING), //[]
-        },
+        // levels: {
+        //     type: DataTypes.ARRAY(DataTypes.STRING) //[]
+        // },
         about: {
             type: DataTypes.TEXT,
             validate: {
