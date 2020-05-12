@@ -6,24 +6,23 @@ const router = express.Router();
 
 
 
-router.get("/", function (req, res) {
+router.get("/userSignup", function (req, res) {
     res.render("index");
 });
 
 router.post("/userSignup", function (req, res) {
     res.send("Signup Please");
-    db.user.create({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
+    db.User.create({
+        first_name: req.body.firstname,
+        last_name: req.body.lastname,
         email: req.body.email,
         password: req.body.password,
         zipcode: req.body.zipcode
 
     }).then( newUser => {
-   
         req.session.user = {
             email: newUser.email,
-            id: newUser.UserId
+            id: newUser.email
         };
         res.send("Welcome");
     }).catch(err => {
@@ -34,15 +33,14 @@ router.post("/userSignup", function (req, res) {
 
 router.post("/tutorSignup", function (req, res) {
     res.send("Signup Please");
-    db.tutor.create({
+    db.Teacher.create({
         levels: [],
         skills:[],
         picture:req.body.picture
     }).then( newTutor => {
-   
         req.session.user = {
             email: newTutor.email,
-            id: newTutor.tuorId
+            id: newTutor.email
         };
         res.send("Welcome");
     }).catch(err => {
