@@ -34,8 +34,8 @@ app.use(session({
 app.use(express.static("public"));
 
 //SET ALL ROUTES
-let signupRoute = require("./controllers/signupController.js");
-app.use(signupRoute);
+// let signupRoute = require("./controllers/signupController.js");
+// app.use(signupRoute);
 
 
 db.sequelize.sync({ force: false }).then(function() {

@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "favorite_movies_db;",
+    "database": "find_teacher_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
