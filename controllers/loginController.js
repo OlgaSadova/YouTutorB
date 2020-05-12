@@ -12,20 +12,26 @@ router.get("/login", function (req, res) {
 
 router.post("/login", function (req, res) {
     res.send("Signup Please");
-    db.user.create({
-        email: req.body.email,
-        password: req.body.password
-    }).then( newStudent => {
-   
-        req.session.user = {
-            email: newStudent.email,
-            id: newStudent.studentId
-        };
-        res.send("Welcome");
+    db.user.findOne({
+        where: {
+            email: req.body.email,
+        }
+
+    }).then(dbUser => {
+        if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+
+            req.session.user = {
+
+                email: dbUserF.email,
+                id: newUser.userId
+
+            };
+
+            res.send("Welcome");
+        }
     }).catch(err => {
         console.log(err);
-        res.redirect("/studentSignup")
+        res.redirect("/userSignup")
     });
-
-
 });
+
