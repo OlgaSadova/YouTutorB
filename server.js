@@ -1,5 +1,4 @@
 const express = require("express");
-const exphbs = require("express-handlebars");
 const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
 
@@ -31,16 +30,10 @@ app.use(session({
   }
 }))
 
-
-// Sets handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-
 // Static directory
 app.use(express.static("public"));
 
-
+//SET ALL ROUTES
 let signupRoute = require("./controllers/signupController.js");
 app.use(signupRoute);
 
