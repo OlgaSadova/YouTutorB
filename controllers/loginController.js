@@ -12,7 +12,7 @@ router.get("/login", function (req, res) {
 
 router.post("/login", function (req, res) {
     res.send("Signup Please");
-    db.user.findOne({
+    db.User.findOne({
         where: {
             email: req.body.email,
         }
@@ -22,7 +22,7 @@ router.post("/login", function (req, res) {
 
             req.session.user = {
 
-                email: dbUserF.email,
+                email: dbUser.email,
                 id: newUser.userId
 
             };
@@ -34,4 +34,7 @@ router.post("/login", function (req, res) {
         res.redirect("/userSignup")
     });
 });
+
+
+module.exports = router;
 

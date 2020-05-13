@@ -1,30 +1,33 @@
-
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     const Teacher = sequelize.define('Teacher', {
-        skills :{
-            type: DataTypes.ARRAY(DataTypes.STRING), // [JS, javaScript, HTML5, HTML , Java, C++, React, Go, jQuery, SQL]
-        },
-        levels :{
-            type: DataTypes.ARRAY(DataTypes.STRING), //[]
-        },
+
         about :{
             type: DataTypes.TEXT, 
             validate:{
+
+
                 len: [100] // we should set maximun characters, not sure that 100 like here
             }
         },
-        dob :{
+        dob: {
             type: DataTypes.DATEONLY, //format('YYYY-MM-DD')
         },
-        picture :{
+        picture: {
             type: DataTypes.STRING, // link?
         },
 
+
     });
+<<<<<<< HEAD
     Teacher.associate = function(models) {
+       // Teacher.belongsTo(models.User)
+       // Teacher.hasMany(models.Review);
+=======
+    Teacher.associate = function (models) {
         Teacher.belongsTo(models.User)
         Teacher.hasMany(models.Review);
+>>>>>>> be1f1e50d05741cf502587135300013be571f5f2
+
     };
     return Teacher;
 };
-

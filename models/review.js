@@ -1,7 +1,12 @@
 
 
-module.exports = function (sequelize, DataTypes) {
+<<<<<<< HEAD
+module.exports = function(sequelize, DataTypes) {
     const Review = sequelize.define('review', {
+=======
+module.exports = function (sequelize, DataTypes) {
+    const Review = sequelize.define('Review', {
+>>>>>>> be1f1e50d05741cf502587135300013be571f5f2
         rating: { 
             type: DataTypes.STRING // (1-5)
         },
@@ -14,11 +19,7 @@ module.exports = function (sequelize, DataTypes) {
 
     });
     Review.associate = function (models) {
-        Review.belongsTo(models.Teacher);
+       // Review.belongsTo(models.Teacher);
     };
     return Review;
 };
-
-
-
-

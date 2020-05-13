@@ -4,9 +4,11 @@ module.exports = function (sequelize, DataTypes) {
     const User = sequelize.define('User', {
         first_name: {
             type: DataTypes.STRING,
+            allowNull:false
         },
         last_name: {
             type: DataTypes.STRING,
+            allowNull:false
         },
         email: {
             type: DataTypes.STRING,
@@ -18,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [6] //We can change
             }
         },
-        zicode: {
+        zipcode: {
             type: DataTypes.INTEGER,
             validate: {
                 len: [5, 5]
@@ -28,8 +30,9 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     User.associate = function (models) {
-        User.hasMany(models.Teacher);
-        User.hasMany(models.Studentpost);
+       // User.hasMany(models.Teacher);
+       // User.hasMany(models.Studentpost);
+
     }
     User.beforeCreate(function (user) {
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
