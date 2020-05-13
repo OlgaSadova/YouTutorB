@@ -6,7 +6,7 @@ const router = express.Router();
 
 const bcrypt = require("bcrypt");
 
-router.get("/teacherReview" , function (req, res){
+router.get("/teacherreview" , function (req, res){
     res.render("review page");
 })
 
@@ -21,3 +21,6 @@ router.post("teacherReview", function (req, res){
         res.status(500).json(err)
     })
 })
+
+
+module.exports = router;

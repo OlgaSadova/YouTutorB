@@ -12,12 +12,13 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         connect: {
+            type: DataTypes.TEXT, 
             //WILL GET FROM USER ID
         }
 
     });
     Studentpost.associate = function (models) {
-        Studentpost.belongsTo(models.User);
+       // Studentpost.belongsTo(models.User);
     };
     return Studentpost;
 };
