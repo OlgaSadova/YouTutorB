@@ -39,6 +39,12 @@ app.use("/teacherreview", reviewRoute);
 app.use("/usersignup", signupRoute);
 //app.use(/*/route*/, teacherRoute);
 
+<<<<<<< HEAD
+=======
+//SET ALL ROUTES
+// let signupRoute = require("./controllers/signupController.js");
+// app.use(signupRoute);
+>>>>>>> be1f1e50d05741cf502587135300013be571f5f2
 
 
 db.sequelize.sync({ force: true }).then(function () {
