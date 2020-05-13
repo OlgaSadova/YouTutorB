@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 
-router.get("/userSignup", function (req, res) {
+router.get("/usersignup", function (req, res) {
     res.render("index");
 });
 
@@ -48,3 +48,6 @@ router.post("/tutorSignup", function (req, res) {
         res.redirect("/tutorSignup")
     });
 });
+
+
+module.exports = router;

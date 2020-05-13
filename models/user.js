@@ -30,8 +30,8 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     User.associate = function (models) {
-        User.hasMany(models.Teacher);
-        User.hasMany(models.Studentpost);
+       // User.hasMany(models.Teacher);
+       // User.hasMany(models.Studentpost);
 
     }
     User.beforeCreate(function (user) {

@@ -32,7 +32,7 @@ router.get("/posts/saved", function (req, res) {
 
 // new posts route
 
-router.post("/posts/", function (req, res) {
+router.post("/posts", function (req, res) {
 
     db.studentpost.create({
         level: req.body.level,
@@ -60,3 +60,6 @@ router.delete("/posts/:delete", function (req, res) {
         res.status(500).json(err);
     });
 })
+
+
+module.exports = router;
