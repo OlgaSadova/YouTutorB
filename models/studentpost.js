@@ -11,9 +11,9 @@ module.exports = function (sequelize, DataTypes) {
                 len: [100] // we should set maximun characters, not sure that 100 like here
             }
         },
-        connect: {
-            //WILL GET FROM USER ID
-        }
+        // connect: {
+        //     //WILL GET FROM USER ID
+        // }
 
     });
     Studentpost.associate = function (models) {
