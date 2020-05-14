@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
 
 
@@ -13,6 +15,12 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use(express.json());
+
+app.use(cors({
+  origin: ["http://localhost:3000"],
+  credentials:true
+})); 
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   store: new SequelizeStore({
@@ -39,6 +47,12 @@ app.use(logInRoute);
 app.use(postRoute);
 app.use(reviewRoute);
 app.use(signupRoute);
+
+// app.use("/route", teacherRoute);
+
+//SET ALL ROUTES// let signupRoute = require("./controllers/signupController.js");
+// app.use(signupRoute);
+=======
 //app.use(/*/route*/, teacherRoute);
 
 

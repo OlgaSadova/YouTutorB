@@ -9,11 +9,14 @@ module.exports = function (sequelize, DataTypes) {
                 len: [100] // we should set maximun characters, not sure that 100 like here
             }
 
+
+
         },
 
         connect: {
             type: DataTypes.TEXT,
             //WILL GET FROM USER ID
+
         }
 
 

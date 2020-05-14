@@ -6,12 +6,14 @@ const router = express.Router();
 
 
 
-router.get("/usersignup", function (req, res) {
+router.get("/userSignup", function (req, res) {
     res.render("index");
 });
 
 router.post("/userSignup", function (req, res) {
+
     // res.send("Signup Please");
+
     db.User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
