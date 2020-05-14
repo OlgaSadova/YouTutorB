@@ -6,10 +6,8 @@ module.exports = function (sequelize, DataTypes) {
         post: {
             type: DataTypes.TEXT,
             validate: {
-                len: [100] // we should set maximun characters, not sure that 100 like here
+                len: [1] // we should set maximun characters, not sure that 100 like here
             }
-
-
 
         },
 
