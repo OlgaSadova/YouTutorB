@@ -18,15 +18,9 @@ module.exports = function (sequelize, DataTypes) {
 
 
     });
-<<<<<<< HEAD
-    Teacher.associate = function(models) {
-       // Teacher.belongsTo(models.User)
-       // Teacher.hasMany(models.Review);
-=======
     Teacher.associate = function (models) {
         Teacher.belongsTo(models.User)
         Teacher.hasMany(models.Review);
->>>>>>> be1f1e50d05741cf502587135300013be571f5f2
 
     };
     return Teacher;
