@@ -11,22 +11,28 @@ router.get("/signup/teacher", function (req, res) {
 });
 
 router.post("/signup/teacher", function (req, res) {
-    res.send("Signup Please");
+    console.log(req.body);
     db.Teacher.create({
         skills: req.body.skills,
         levels: req.body.levels,
         about: req.body.about,
-        dob: req.body.dob,
+        // dob: req.body.dob,
         picture: req.body.picture
 
     }).then(newTeacher => {
-        req.session.user = {
-            email: newUser.email,
-            id: newUser.email
-        };
-        res.send("Welcome");
+        res.json(newTeacher)
+        
+        console.log(newTeacher);
+        
+        // req.session.user = {
+        //     email: newUser.email,
+        //     id: newUser.email
+        //};
+        
     }).catch(err => {
         console.log(err);
-        res.redirect("/userSignup")
+        
     });
 });
+
+module.exports = router;
