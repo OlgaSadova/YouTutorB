@@ -36,7 +36,7 @@ router.post("/posts", function (req, res) {
 
     db.studentpost.create({
         level: req.body.level,
-        post: req.body.posts
+        post: req.body.post
 
     }).then(function (newPost) {
         res.json(newPost)
