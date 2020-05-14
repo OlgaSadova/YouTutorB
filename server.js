@@ -52,7 +52,7 @@ app.use(signupRoute);
 
 //SET ALL ROUTES// let signupRoute = require("./controllers/signupController.js");
 // app.use(signupRoute);
-=======
+
 //app.use(/*/route*/, teacherRoute);
 
 
