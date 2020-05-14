@@ -6,10 +6,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         post: {
-            type: DataTypes.TEXT, 
-            validate:{
-                len: [100] // we should set maximun characters, not sure that 100 like here
-            }
+            type: DataTypes.STRING
+            // , 
+            // validate:{
+            //     len: [100] // we should set maximun characters, not sure that 100 like here
+            // }
         }
         // connect: {
         //     //WILL GET FROM USER ID

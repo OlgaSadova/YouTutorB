@@ -17,7 +17,7 @@ router.get("/posts/user", function (req, res) {
 
 router.get("/posts/saved", function (req, res) {
     console.log("hi");
-    db.studentpost.findAll({
+    db.Studentpost.findAll({
         where: {
             email: req.session.user.id
         }
@@ -33,10 +33,11 @@ router.get("/posts/saved", function (req, res) {
 // new posts route
 
 router.post("/posts", function (req, res) {
-
-    db.studentpost.create({
+        console.log(req.body);
+        
+    db.Studentpost.create({
         level: req.body.level,
-        post: req.body.posts
+        post: req.body.post
 
     }).then(function (newPost) {
         res.json(newPost)
@@ -48,7 +49,7 @@ router.post("/posts", function (req, res) {
 
 
 router.delete("/posts/:delete", function (req, res) {
-    db.studentpost.destroy({
+    db.Studentpost.destroy({
 
         where: {
             id: req.params.id
