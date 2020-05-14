@@ -11,7 +11,9 @@ router.get("/userSignup", function (req, res) {
 });
 
 router.post("/userSignup", function (req, res) {
-    
+
+    // res.send("Signup Please");
+
     db.User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -24,7 +26,7 @@ router.post("/userSignup", function (req, res) {
             email: newUser.email,
             id: newUser.email
         };
-        res.send("Welcome");
+        res.send(newUser);
     }).catch(err => {
         console.log(err);
         res.redirect("/userSignup")
@@ -42,7 +44,7 @@ router.post("/tutorSignup", function (req, res) {
             email: newTutor.email,
             id: newTutor.email
         };
-        res.send("Welcome");
+        // res.send("Welcome");
     }).catch(err => {
         console.log(err);
         res.redirect("/tutorSignup")
