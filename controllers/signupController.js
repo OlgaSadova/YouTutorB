@@ -13,6 +13,7 @@ router.get("/usersignup", function (req, res) {
 router.post("/userSignup", function (req, res) {
     // res.send("Signup Please");
     db.User.create({
+        username:req.body.username,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
@@ -31,23 +32,25 @@ router.post("/userSignup", function (req, res) {
     });
 });
 
-router.post("/tutorSignup", function (req, res) {
-    res.send("Signup Please");
-    db.Teacher.create({
-        levels: [],
-        skills: [],
-        picture:req.body.picture
-    }).then( newTutor => {
-        req.session.user = {
-            email: newTutor.email,
-            id: newTutor.email
-        };
-        // res.send("Welcome");
-    }).catch(err => {
-        console.log(err);
-        res.redirect("/tutorSignup")
-    });
-});
+// 
+
+// router.post("/tutorSignup", function (req, res) {
+//     res.send("Signup Please");
+//     db.Teacher.create({
+//         levels: [],
+//         skills: [],
+//         picture:req.body.picture
+//     }).then( newTutor => {
+//         req.session.user = {
+//             username: newTutor.username,
+//             id: newTutor.id
+//         };
+//         // res.send("Welcome");
+//     }).catch(err => {
+//         console.log(err);
+//         res.redirect("/tutorSignup")
+//     });
+// });
 
 
 module.exports = router;

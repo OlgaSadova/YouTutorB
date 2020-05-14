@@ -33,13 +33,13 @@ const logInRoute = require("./controllers/loginController.js");
 const postRoute = require("./controllers/postController.js");
 const reviewRoute = require("./controllers/reviewController.js");
 const signupRoute = require("./controllers/signupController.js");
-//const teacherRoute = require("./controllers/teacherController.js");
+// const teacherRoute = require("./controllers/teacherController.js");
 
 app.use(logInRoute);
 app.use(postRoute);
 app.use(reviewRoute);
 app.use(signupRoute);
-//app.use(/*/route*/, teacherRoute);
+// app.use(teacherRoute);
 
 
 

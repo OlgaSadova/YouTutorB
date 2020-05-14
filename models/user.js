@@ -2,13 +2,26 @@ const bcrypt = require("bcrypt");
 
 module.exports = function (sequelize, DataTypes) {
     const User = sequelize.define('User', {
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+
+
+            validate: {
+                len:[5, 15]
+            }
+        },
+
+
+
         first_name: {
             type: DataTypes.STRING,
-            allowNull:false
+            allowNull: false
         },
         last_name: {
             type: DataTypes.STRING,
-            allowNull:false
+            allowNull: false
         },
         email: {
             type: DataTypes.STRING,
@@ -30,8 +43,8 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     User.associate = function (models) {
-       // User.hasMany(models.Teacher);
-       // User.hasMany(models.Studentpost);
+        // User.hasMany(models.Teacher);
+        // User.hasMany(models.Studentpost);
 
     }
     User.beforeCreate(function (user) {

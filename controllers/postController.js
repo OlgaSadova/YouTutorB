@@ -15,11 +15,11 @@ router.get("/posts/user", function (req, res) {
 
 //get all users own posts
 
-router.get("/posts/saved", function (req, res) {
+router.get("/posts", function (req, res) {
     console.log("hi");
     db.studentpost.findAll({
         where: {
-            email: req.session.user.id
+            level: req.session.user.level
         }
     }).then(function (savedPost) {
         res.json(savedPost)
@@ -36,6 +36,7 @@ router.post("/posts", function (req, res) {
 
     db.studentpost.create({
         level: req.body.level,
+        skill: req.body.skill,
         post: req.body.posts
 
     }).then(function (newPost) {
