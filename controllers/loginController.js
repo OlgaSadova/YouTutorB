@@ -6,12 +6,12 @@ const router = express.Router();
 
 const bcrypt = require("bcrypt");
 
-router.get("/login", function (req, res) {
-    res.send("Welcome Back!");
+router.get("/", function (req, res) {
+    res.render("<h1> Signup Please </h1>");
 });
 
 router.post("/login", function (req, res) {
-    res.send("Signup Please");
+    res.send("");
     db.User.findOne({
         where: {
             email: req.body.email,
@@ -27,7 +27,7 @@ router.post("/login", function (req, res) {
 
             };
 
-            res.send("Welcome");
+            res.redirect("/profile");
         }
     }).catch(err => {
         console.log(err);
