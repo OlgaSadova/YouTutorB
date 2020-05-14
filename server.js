@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 
@@ -11,6 +12,12 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors({
+  origin: ["http://localhost:3000"],
+  credentials:true
+})); 
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   store: new SequelizeStore({
@@ -33,18 +40,14 @@ const reviewRoute = require("./controllers/reviewController.js");
 const signupRoute = require("./controllers/signupController.js");
 //const teacherRoute = require("./controllers/teacherController.js");
 
-app.use("/login", logInRoute);
-app.use("/posts", postRoute);
-app.use("/teacherreview", reviewRoute);
-app.use("/usersignup", signupRoute);
-//app.use(/*/route*/, teacherRoute);
+app.use(logInRoute);
+app.use(postRoute);
+app.use(reviewRoute);
+app.use(signupRoute);
+// app.use("/route", teacherRoute);
 
-<<<<<<< HEAD
-=======
-//SET ALL ROUTES
-// let signupRoute = require("./controllers/signupController.js");
+//SET ALL ROUTES// let signupRoute = require("./controllers/signupController.js");
 // app.use(signupRoute);
->>>>>>> be1f1e50d05741cf502587135300013be571f5f2
 
 
 db.sequelize.sync({ force: true }).then(function () {
