@@ -10,6 +10,17 @@ router.get("/userSignup", function (req, res) {
     res.render("index");
 });
 
+router.get("/api/players/:id", (req, res) => {
+    db.User.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(player => {
+        res.json(player)
+    })
+})
+
+
 router.post("/userSignup", function (req, res) {
 
     // res.send("Signup Please");

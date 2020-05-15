@@ -29,10 +29,11 @@ router.post("/login", function (req, res) {
             req.session.user = {
 
                 email: dbUser.email,
-                id: dbUser.id
+                id: dbUser.id,
+
 
             };
-            res.json(req.session)
+            res.json(dbUser)
             // res.redirect("/profile");
         }
         
