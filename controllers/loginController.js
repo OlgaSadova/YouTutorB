@@ -50,5 +50,10 @@ router.get("/readsessions", (req, res) => {
     res.json(req.session)
 })
 
+router.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.json("logged out!")
+})
+
 module.exports = router;
 
