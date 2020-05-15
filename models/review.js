@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         review: {
             type: DataTypes.TEXT, 
             validate:{
-                len: [80] // we should set maximun characters, not sure that 100 like here
+                len: [1,100] // we should set maximun characters, not sure that 100 like here
             }
         }
 
