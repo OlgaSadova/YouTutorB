@@ -43,12 +43,14 @@ const postRoute = require("./controllers/postController.js");
 const reviewRoute = require("./controllers/reviewController.js");
 const signupRoute = require("./controllers/signupController.js");
 const teacherRoute = require("./controllers/teacherController.js");
+const filterRoute = require("./controllers/filterController.js");
 
 app.use(logInRoute);
 app.use(postRoute);
 app.use(reviewRoute);
 app.use(signupRoute);
 app.use(teacherRoute);
+app.use(filterRoute);
 
 // app.use("/route", teacherRoute);
 
