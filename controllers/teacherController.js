@@ -10,6 +10,8 @@ router.get("/signup/teacher", function (req, res) {
     res.render("index");
 });
 
+
+
 router.post("/signup/teacher", function (req, res) {
     console.log(req.body);
     db.Teacher.create({
@@ -17,7 +19,8 @@ router.post("/signup/teacher", function (req, res) {
         levels: req.body.levels,
         about: req.body.about,
         // dob: req.body.dob,
-        picture: req.body.picture
+        picture: req.body.picture,
+        UserId: req.session.user.id
 
     }).then(newTeacher => {
         res.json(newTeacher)

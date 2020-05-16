@@ -19,13 +19,17 @@ module.exports = function (sequelize, DataTypes) {
         },
         picture: {
             type: DataTypes.STRING, // link?
-        },
+        }
 
 
     });
     Teacher.associate = function (models) {
         Teacher.belongsTo(models.User)
+
         Teacher.hasMany(models.Review);
+
+        // Teacher.hasMany(models.Review);
+
 
     };
     return Teacher;
