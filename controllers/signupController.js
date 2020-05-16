@@ -33,10 +33,11 @@ router.post("/userSignup", function (req, res) {
         zipcode: req.body.zipcode
 
     }).then( newUser => {
-        req.session.user = {
-            email: newUser.email,
-            id: newUser.email
-        };
+        req.session.user = newUser
+        // {
+        //     email: newUser.email,
+        //     id: newUser.email
+        // };
         res.send(newUser);
     }).catch(err => {
         console.log(err);
