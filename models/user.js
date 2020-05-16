@@ -10,8 +10,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull:false
         },
+        
         email: {
             type: DataTypes.STRING,
+            unique:true,
+            allowNull:false,
             isEmail: true
         },
         password: {
@@ -23,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
         zipcode: {
             type: DataTypes.INTEGER,
             validate: {
-                len: [5, 5]
+                
             }
 
 
@@ -35,7 +38,7 @@ module.exports = function (sequelize, DataTypes) {
 
     }
     User.beforeCreate(function (user) {
-        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+        User.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     })
     return User;
 };

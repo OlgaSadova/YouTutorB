@@ -6,11 +6,11 @@ const router = express.Router();
 
 const bcrypt = require("bcrypt");
 
-router.get("/signup/teacher", function (req, res) {
+router.get("/signupteacher", function (req, res) {
     res.render("index");
 });
 
-router.post("/signup/teacher", function (req, res) {
+router.post("/signupteacher", function (req, res) {
     res.send("Signup Please");
     db.Teacher.create({
         skills: req.body.skills,
@@ -30,3 +30,4 @@ router.post("/signup/teacher", function (req, res) {
         res.redirect("/userSignup")
     });
 });
+module.exports = router;
