@@ -10,6 +10,17 @@ router.get("/userSignup", function (req, res) {
     res.render("index");
 });
 
+router.get("/api/players/:id", (req, res) => {
+    db.User.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(player => {
+        res.json(player)
+    })
+})
+
+
 router.post("/userSignup", function (req, res) {
 
     // res.send("Signup Please");
@@ -22,10 +33,11 @@ router.post("/userSignup", function (req, res) {
         zipcode: req.body.zipcode
 
     }).then( newUser => {
-        req.session.user = {
-            email: newUser.email,
-            id: newUser.email
-        };
+        req.session.user = newUser
+        // {
+        //     email: newUser.email,
+        //     id: newUser.email
+        // };
         res.send(newUser);
     }).catch(err => {
         console.log(err);

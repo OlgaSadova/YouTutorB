@@ -17,23 +17,20 @@ router.post("/login", function (req, res) {
         where: {
             email: req.body.email
         }
+        ,
+        include: [db.Teacher, db.Studentpost]
 
     }).then(dbUser => {
-
+        console.log(dbUser);
+        
         if (!dbUser) {
             req.session.user = false
             res.send("no user found")
         }
         else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
-            // res.send("CORRECT!")
-            req.session.user = {
-
-                email: dbUser.email,
-                id: dbUser.id
-
-            };
-            res.json(req.session)
-            // res.redirect("/profile");
+            req.session.user = dbUser
+            
+            res.json(dbUser)
         }
         
         else {
