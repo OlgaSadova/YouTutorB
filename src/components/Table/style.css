@@ -1,0 +1,13 @@
+.table{
+display: inline-block;
+float: left;
+/* display: block; */
+margin: 20px;
+width: 100%;
+align-items: center;
+	
+}
+td{
+text-align: center;
+width: 12cm;
+}
