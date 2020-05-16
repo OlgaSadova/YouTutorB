@@ -27,6 +27,7 @@ module.exports = function (sequelize, DataTypes) {
         Teacher.belongsTo(models.User)
 
         Teacher.hasMany(models.Review);
+        Teacher.hasMany(models.Skill);
 
         // Teacher.hasMany(models.Review);
 

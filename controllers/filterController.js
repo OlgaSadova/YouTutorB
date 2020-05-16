@@ -23,7 +23,7 @@ router.get("/api/searchresult", (req, res) => {
 
 router.get("/api/searchresult", (req, res) => {
     //console.log(req.body.data)
-    db.skill.findAll(
+    db.Skill.findAll(
         {attributes: ["skill"],
         raw: true}
         ).then(skill => {
