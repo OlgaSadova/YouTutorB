@@ -14,9 +14,9 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1] // we should set maximun characters, not sure that 100 like here
             }
         },
-        dob: {
-            type: DataTypes.DATEONLY, //format('YYYY-MM-DD')
-        },
+//         dob: {
+//             type: DataTypes.DATEONLY, //format('YYYY-MM-DD')
+//         },
         picture: {
             type: DataTypes.STRING, // link?
         }
