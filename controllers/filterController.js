@@ -23,11 +23,11 @@ router.get("/api/searchresult", (req, res) => {
 
 router.get("/api/searchresult", (req, res) => {
     //console.log(req.body.data)
-    db.Skill.findAll(
+    db.programming_languager_small.findAll(
         {attributes: ["skill"],
         raw: true}
         ).then(skill => {
-            //  console.log(skill[0].dataValues.skill)
+             console.log(skill)
         
         res.json(skill)
     })
