@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
 
     });
     Review.associate = function (models) {
-       // Review.belongsTo(models.Teacher);
+       //Review.belongsTo(models.Teacher);
     };
     return Review;
 };

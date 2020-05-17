@@ -1,0 +1,6 @@
+id,first_name,last_name,email,password,zipcode,createdAt,updatedAt
+1,Person1,Las1,111@111.com,password,91111,4/26/2020 3:38,4/26/2020 3:38
+2,Person2,Last2,222@222.com,password,92222,4/26/2020 3:38,4/26/2020 3:38
+3,Person3,Las2,333@333.com,password,93333,4/26/2020 3:38,4/26/2020 3:38
+4,Person4,Last3,444@444.com,password,94444,4/26/2020 3:38,4/26/2020 3:38
+5,Person5,Las3,555@555.com,password,95555,4/26/2020 3:38,4/26/2020 3:38

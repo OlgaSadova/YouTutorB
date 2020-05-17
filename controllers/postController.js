@@ -14,7 +14,6 @@ router.get("/posts/user", function (req, res) {
 });
 
 //get all users own posts
-
 router.get("/posts/saved", function (req, res) {
     console.log("hi");
     db.Studentpost.findAll({

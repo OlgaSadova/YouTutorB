@@ -7,6 +7,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 
 router.get("/", function (req, res) {
+    res.redirect("/userSignup")
     res.render("<h1> Signup Please </h1>");
 });
 
@@ -27,7 +28,6 @@ router.post("/login", function (req, res) {
 
             };
 
-            res.redirect("/profile");
         }
     }).catch(err => {
         console.log(err);
