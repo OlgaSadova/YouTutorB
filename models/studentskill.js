@@ -7,7 +7,8 @@ module.exports = function (sequelize, DataTypes) {
         
     });
     StudentSkill.associate = function (models) {
-    //StudentSkill.belongsTo(models.User);
+        
+    StudentSkill.belongsTo(models.User);
     };
     return StudentSkill;
 };
