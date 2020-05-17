@@ -6,28 +6,37 @@ const router = express.Router();
 
 const bcrypt = require("bcrypt");
 
+
 router.get("/", function (req, res) {
     res.redirect("/userSignup")
     res.render("<h1> Signup Please </h1>");
 });
 
 router.post("/login", function (req, res) {
-    res.send("");
+    
     db.User.findOne({
         where: {
-            email: req.body.email,
+            email: req.body.email
         }
+        ,
+        include: [db.Teacher, db.Studentpost]
 
     }).then(dbUser => {
-        if (bcrypt.compareSync(req.body.password, dbUser.password)) {
-
-            req.session.user = {
-
-                email: dbUser.email,
-                id: newUser.userId
-
-            };
-
+        console.log(dbUser);
+        
+        if (!dbUser) {
+            req.session.user = false
+            res.send("no user found")
+        }
+        else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+            req.session.user = dbUser
+            
+            res.json(dbUser)
+        }
+        
+        else {
+            req.session.user = false
+            res.send("incorrect password")
         }
     }).catch(err => {
         console.log(err);
@@ -35,6 +44,14 @@ router.post("/login", function (req, res) {
     });
 });
 
+router.get("/readsessions", (req, res) => {
+    res.json(req.session)
+})
+
+router.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.json("logged out!")
+})
 
 module.exports = router;
 

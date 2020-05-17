@@ -1,11 +1,7 @@
-
-
 //realdb:
 const db = require("../models");
 const express = require("express");
 const router = express.Router();
-
-
 
 // GET ALL GENERIC SKILLS to the front ***(WE HAVE SEEDS FILE FOR THAT)***
 router.get("/api/searchresult", (req, res) => {

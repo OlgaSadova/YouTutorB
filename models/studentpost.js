@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
 
     });
     Studentpost.associate = function (models) {
-        //Studentpost.belongsTo(models.User);
+        Studentpost.belongsTo(models.User);
     };
     return Studentpost;
 };

@@ -7,7 +7,9 @@ router.get("/signup/teacher", function (req, res) {
     res.render("index");
 });
 
-router.post("/signup/teacher", function (req, res) {
+
+
+router.post("/signup/teacher/api/teacherkills", function (req, res) {
     req.body.skill.forEach(newSkill => {
         //teaching skill comes from the front as a array and goes to TeachSkill table
         db.TeacherSkill.create({
@@ -21,8 +23,10 @@ router.post("/signup/teacher", function (req, res) {
     db.Teacher.create({ 
         levels: req.body.levels,
         about: req.body.about,
-        //dob: req.body.dob,
-        picture: req.body.picture
+        // dob: req.body.dob,
+        picture: req.body.picture,
+        UserId: req.session.user.id
+
     }).then(newTeacher => {
         res.json(newTeacher)
         

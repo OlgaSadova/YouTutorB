@@ -8,13 +8,13 @@ module.exports = function (sequelize, DataTypes) {
         review: {
             type: DataTypes.TEXT, 
             validate:{
-                len: [80] // we should set maximun characters, not sure that 100 like here
+                len: [1,100] // we should set maximun characters, not sure that 100 like here
             }
         }
 
     });
     Review.associate = function (models) {
-       //Review.belongsTo(models.Teacher);
+      // Review.belongsTo(models.Teacher);
     };
     return Review;
 };

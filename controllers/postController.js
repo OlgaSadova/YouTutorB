@@ -1,9 +1,6 @@
 const db = require("../models");
-
 const express = require("express");
-
 const router = express.Router();
-
 const bcrypt = require("bcrypt");
 
 
@@ -36,7 +33,8 @@ router.post("/posts", function (req, res) {
         
     db.Studentpost.create({
         level: req.body.level,
-        post: req.body.post
+        post: req.body.post,
+        UserId: req.session.user.id
 
     }).then(function (newPost) {
         res.json(newPost)
