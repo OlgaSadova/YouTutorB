@@ -12,12 +12,14 @@ module.exports = function (sequelize, DataTypes) {
         },
         email: {
             type: DataTypes.STRING,
-            isEmail: true
+            isEmail: true,
+            unique: true,
+            allowNull:false
         },
         password: {
             type: DataTypes.STRING,
             validate: {
-                len: [6] //We can change
+                len: [8] //We can change
             }
         },
         zipcode: {
@@ -30,8 +32,8 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     User.associate = function (models) {
-     //  User.hasOne(models.Teacher);
-     //  User.hasOne(models.Studentpost);
+      User.hasOne(models.Teacher);
+      User.hasOne(models.Studentpost);
 
 
     }
