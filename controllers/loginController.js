@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 
 
 router.get("/", function (req, res) {
+    res.redirect("/userSignup")
     res.render("<h1> Signup Please </h1>");
 });
 

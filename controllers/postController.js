@@ -1,9 +1,6 @@
 const db = require("../models");
-
 const express = require("express");
-
 const router = express.Router();
-
 const bcrypt = require("bcrypt");
 
 
@@ -14,7 +11,6 @@ router.get("/posts/user", function (req, res) {
 });
 
 //get all users own posts
-
 router.get("/posts/saved", function (req, res) {
     console.log("hi");
     db.Studentpost.findAll({
