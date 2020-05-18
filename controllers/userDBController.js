@@ -12,7 +12,8 @@ router.post("/api/userskills", function (req, res) {
     if(req.body) {
         req.body.forEach(newSkill => {
             db.StudentSkill.create({
-                skill: newSkill
+                skill: newSkill,
+                UserId: req.session.user.id
                 //user_Id : name //from the front
     }).then(result => {
             
