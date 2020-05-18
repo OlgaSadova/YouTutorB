@@ -45,23 +45,6 @@ router.post("/userSignup", function (req, res) {
     });
 });
 
-router.post("/tutorSignup", function (req, res) {
-    res.send("Signup Please");
-    db.Teacher.create({
-        levels: [],
-        skills: [],
-        picture:req.body.picture
-    }).then( newTutor => {
-        req.session.user = {
-            email: newTutor.email,
-            id: newTutor.email
-        };
-        // res.send("Welcome");
-    }).catch(err => {
-        console.log(err);
-        res.redirect("/tutorSignup")
-    });
-});
 
 
 module.exports = router;

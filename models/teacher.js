@@ -7,15 +7,15 @@
 module.exports = function (sequelize, DataTypes) {
     const Teacher = sequelize.define('Teacher', {
 
-        levels: {
-            type: DataTypes.STRING
-        },
+        // levels: {
+        //     type: DataTypes.STRING
+        // },
 
         about :{
             type: DataTypes.TEXT, 
-            validate:{
-                len: [1] // we should set maximun characters, not sure that 100 like here
-            }
+            // validate:{
+            //     len: [1] // we should set maximun characters, not sure that 100 like here
+            // }
         },
 //         dob: {
 //             type: DataTypes.DATEONLY, //format('YYYY-MM-DD')
@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
     Teacher.associate = function (models) {
         Teacher.belongsTo(models.User)
         Teacher.hasMany(models.Review);
-        Teacher.hasMany(models.Skill);
+        // Teacher.hasMany(models.TeacherSkill);
 
     };
     return Teacher;
