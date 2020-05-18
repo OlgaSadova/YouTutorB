@@ -40,7 +40,7 @@ router.post("/login", function (req, res) {
         }
     }).catch(err => {
         console.log(err);
-        res.redirect("/userSignup")
+        // res.redirect("/userSignup")
     });
 });
 

@@ -39,10 +39,6 @@ router.post("/signup/teacher", function (req, res) {
         
     console.log(newTeacher);
         
-        // req.session.user = {
-        //     email: newUser.email,
-        //     id: newUser.email
-        //};
         
     }).catch(err => {
         console.log(err);
@@ -50,31 +46,6 @@ router.post("/signup/teacher", function (req, res) {
     });
 });
 
-
-// save user skills when he is doing search
-// router.post("/api/teacherskills", function (req, res) {
-//     console.log("This is /api/teacherskills");
-    
-//     req.body.skills.forEach(newSkill => {
-//         //teaching skill comes from the front as a array and goes to TeachSkill table
-//         db.TeacherSkill.create({
-//             skill: newSkill,
-//             Teacher_id : req.session.user.id
-//         })
-//     }).then(result => {
-//         // req.session.user = {
-//         //     email: newUser.email,
-//         //     id: newUser.email
-//         //};
-//         res.send(result);
-//     }).catch(err => {
-//         console.log(err);
-        
-//     });
-// })
-
-
-// })
-        
+  
 
 module.exports = router;

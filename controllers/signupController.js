@@ -30,14 +30,12 @@ router.post("/userSignup", function (req, res) {
         last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
-        zipcode: req.body.zipcode
+        picture: req.body.picture
+        
 
     }).then( newUser => {
         req.session.user = newUser
-        // {
-        //     email: newUser.email,
-        //     id: newUser.email
-        // };
+        
         res.send(newUser);
     }).catch(err => {
         console.log(err);
