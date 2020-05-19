@@ -24,14 +24,30 @@ router.post("/skillsteacher", function (req, res) {
     })
 })
 
+router.get("/getTeacherSkills/:id", function (req,res) {
+    console.log(req.params.id);
+    
+    db.TeacherSkill.findAll({
+        where: {
+            UserId: req.params.id
+        }
+
+    })
+    .then(list => {
+        res.json(list);
+    })
+    .catch(err => {
+        console.log(err);
+        
+    });
+})
+
 
 router.post("/signup/teacher", function (req, res) {
         // information about teacher goes to teacher id table
     db.Teacher.create({ 
-        // levels: req.body.levels,
         about: req.body.about,
-        // dob: req.body.dob,
-        picture: req.body.picture,
+        YearsofExperience:req.body.YearsofExperience,
         UserId: req.session.user.id
 
     }).then(newTeacher => {
