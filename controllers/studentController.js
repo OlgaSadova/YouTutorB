@@ -4,6 +4,23 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 
 
+
+router.post("/api/userskills", function (req, res) {
+    if(req.body) {
+        req.body.forEach(newSkill => {
+            db.StudentSkill.create({
+                skill: newSkill,
+                UserId: req.session.user.id
+    }).then(result => {
+        console.log(result);
+    }).catch(err => {
+        console.log(err);
+        
+    });
+})
+}})
+
+
 //get all the posts
 
 router.get("/posts/user", function (req, res) {
@@ -32,7 +49,6 @@ router.post("/posts", function (req, res) {
         console.log(req.body);
         
     db.Studentpost.create({
-        level: req.body.level,
         post: req.body.post,
         UserId: req.session.user.id
 

@@ -21,14 +21,11 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: [8] //We can change
             }
-        },
-        zipcode: {
-            type: DataTypes.INTEGER,
-            validate: {
-                len: [5, 5]
-            }
-
-
+         }
+        ,
+        picture: {
+            type: DataTypes.STRING
+            
         }
     });
     User.associate = function (models) {
