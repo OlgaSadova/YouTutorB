@@ -31,7 +31,7 @@ router.post("/userSignup", function (req, res) {
     }).catch(err => {
         console.log(err);
         res.redirect("/userSignup")
-    });
+    });  /////////////////////////////// WE SHOULD PUT HERE IF STATMENT AND SEND RESULT LIKe: "EMAIL ALREADY IN USE"
 });
 
 

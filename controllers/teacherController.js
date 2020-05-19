@@ -10,10 +10,10 @@ router.get("/signup/teacher", function (req, res) {
 
 
 router.post("/skillsteacher", function (req, res) {
-    console.log(req.body);
+    //console.log(req.body);
     req.body.forEach(newSkill => {
         //teaching skill comes from the front as a array and goes to TeachSkill table
-        console.log(newSkill);
+        //console.log(newSkill);
         
         db.TeacherSkill.create({
             skill: newSkill,
@@ -25,7 +25,7 @@ router.post("/skillsteacher", function (req, res) {
 })
 
 router.get("/getTeacherSkills/:id", function (req,res) {
-    console.log(req.params.id);
+    //console.log(req.params.id);
     
     db.TeacherSkill.findAll({
         where: {
@@ -53,7 +53,7 @@ router.post("/signup/teacher", function (req, res) {
     }).then(newTeacher => {
         res.json(newTeacher)
         
-    console.log(newTeacher);
+    //console.log(newTeacher);
         
         
     }).catch(err => {
