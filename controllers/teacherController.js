@@ -10,10 +10,10 @@ router.get("/signup/teacher", function (req, res) {
 
 
 router.post("/skillsteacher", function (req, res) {
-    console.log(req.body);
+    //console.log(req.body);
     req.body.forEach(newSkill => {
         //teaching skill comes from the front as a array and goes to TeachSkill table
-        console.log(newSkill);
+        //console.log(newSkill);
         
         db.TeacherSkill.create({
             skill: newSkill,
@@ -24,25 +24,37 @@ router.post("/skillsteacher", function (req, res) {
     })
 })
 
+router.get("/getTeacherSkills/:id", function (req,res) {
+    //console.log(req.params.id);
+    
+    db.TeacherSkill.findAll({
+        where: {
+            UserId: req.params.id
+        }
+
+    })
+    .then(list => {
+        res.json(list);
+    })
+    .catch(err => {
+        console.log(err);
+        
+    });
+})
+
 
 router.post("/signup/teacher", function (req, res) {
         // information about teacher goes to teacher id table
     db.Teacher.create({ 
-        // levels: req.body.levels,
         about: req.body.about,
-        // dob: req.body.dob,
-        picture: req.body.picture,
+        YearsofExperience:req.body.YearsofExperience,
         UserId: req.session.user.id
 
     }).then(newTeacher => {
         res.json(newTeacher)
         
-    console.log(newTeacher);
+    //console.log(newTeacher);
         
-        // req.session.user = {
-        //     email: newUser.email,
-        //     id: newUser.email
-        //};
         
     }).catch(err => {
         console.log(err);
@@ -50,31 +62,6 @@ router.post("/signup/teacher", function (req, res) {
     });
 });
 
-
-// save user skills when he is doing search
-// router.post("/api/teacherskills", function (req, res) {
-//     console.log("This is /api/teacherskills");
-    
-//     req.body.skills.forEach(newSkill => {
-//         //teaching skill comes from the front as a array and goes to TeachSkill table
-//         db.TeacherSkill.create({
-//             skill: newSkill,
-//             Teacher_id : req.session.user.id
-//         })
-//     }).then(result => {
-//         // req.session.user = {
-//         //     email: newUser.email,
-//         //     id: newUser.email
-//         //};
-//         res.send(result);
-//     }).catch(err => {
-//         console.log(err);
-        
-//     });
-// })
-
-
-// })
-        
+  
 
 module.exports = router;

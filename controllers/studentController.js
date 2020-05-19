@@ -4,6 +4,24 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 
 
+
+router.post("/api/userskills", function (req, res) {
+    if(req.body) {
+        req.body.forEach(newSkill => {
+            db.StudentSkill.create({
+                skill: newSkill,
+                UserId: req.session.user.id
+    }).then(result => {
+        //console.log(result);
+        res.json(result)
+    }).catch(err => {
+        console.log(err);
+        
+    });
+})
+}})
+
+
 //get all the posts
 
 router.get("/posts/user", function (req, res) {
@@ -12,7 +30,7 @@ router.get("/posts/user", function (req, res) {
 
 //get all users own posts
 router.get("/posts/saved", function (req, res) {
-    console.log("hi");
+    //console.log("hi");
     db.Studentpost.findAll({
         where: {
             email: req.session.user.id
@@ -29,14 +47,15 @@ router.get("/posts/saved", function (req, res) {
 // new posts route
 
 router.post("/posts", function (req, res) {
-        console.log(req.body);
+        console.log(req.body.about);
         
     db.Studentpost.create({
-        level: req.body.level,
-        post: req.body.post,
+        about: req.body.about,
         UserId: req.session.user.id
 
     }).then(function (newPost) {
+        console.log(newPost);
+        
         res.json(newPost)
     }).catch(err => {
         console.log(err);

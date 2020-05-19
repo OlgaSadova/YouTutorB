@@ -19,10 +19,10 @@ router.post("/login", function (req, res) {
             email: req.body.email
         }
         ,
-        include: [db.Teacher, db.Studentpost]
+        include: [db.Teacher, db.Studentpost,db.StudentSkill,db.TeacherSkill]
 
     }).then(dbUser => {
-        console.log(dbUser);
+        //console.log(dbUser);
         
         if (!dbUser) {
             req.session.user = false
@@ -40,7 +40,7 @@ router.post("/login", function (req, res) {
         }
     }).catch(err => {
         console.log(err);
-        res.redirect("/userSignup")
+        // res.redirect("/userSignup")
     });
 });
 

@@ -21,20 +21,18 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: [8] //We can change
             }
-        },
-        zipcode: {
-            type: DataTypes.INTEGER,
-            validate: {
-                len: [5, 5]
-            }
-
-
+         }
+        ,
+        picture: {
+            type: DataTypes.STRING
+            
         }
     });
     User.associate = function (models) {
       User.hasOne(models.Teacher);
       User.hasOne(models.Studentpost);
-    //   User.hasMany(models.TeacherSkill);
+      User.hasMany(models.TeacherSkill);
+      User.hasMany(models.StudentSkill);
 
 
     }

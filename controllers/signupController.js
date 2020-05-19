@@ -10,15 +10,6 @@ router.get("/userSignup", function (req, res) {
     res.render("index");
 });
 
-router.get("/api/players/:id", (req, res) => {
-    db.User.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(player => {
-        res.json(player)
-    })
-})
 
 
 router.post("/userSignup", function (req, res) {
@@ -30,19 +21,17 @@ router.post("/userSignup", function (req, res) {
         last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
-        zipcode: req.body.zipcode
+        picture: req.body.picture
+        
 
     }).then( newUser => {
         req.session.user = newUser
-        // {
-        //     email: newUser.email,
-        //     id: newUser.email
-        // };
+        
         res.send(newUser);
     }).catch(err => {
         console.log(err);
         res.redirect("/userSignup")
-    });
+    });  /////////////////////////////// WE SHOULD PUT HERE IF STATMENT AND SEND RESULT LIKe: "EMAIL ALREADY IN USE"
 });
 
 
