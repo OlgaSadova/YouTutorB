@@ -22,7 +22,7 @@ router.post("/login", function (req, res) {
         include: [db.Teacher, db.Studentpost]
 
     }).then(dbUser => {
-        console.log(dbUser);
+        //console.log(dbUser);
         
         if (!dbUser) {
             req.session.user = false

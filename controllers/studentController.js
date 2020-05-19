@@ -12,7 +12,8 @@ router.post("/api/userskills", function (req, res) {
                 skill: newSkill,
                 UserId: req.session.user.id
     }).then(result => {
-        console.log(result);
+        //console.log(result);
+        res.json(result)
     }).catch(err => {
         console.log(err);
         
@@ -29,7 +30,7 @@ router.get("/posts/user", function (req, res) {
 
 //get all users own posts
 router.get("/posts/saved", function (req, res) {
-    console.log("hi");
+    //console.log("hi");
     db.Studentpost.findAll({
         where: {
             email: req.session.user.id
