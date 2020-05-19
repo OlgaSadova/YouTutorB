@@ -56,7 +56,7 @@ router.post("/posts", function (req, res) {
     }).then(function (newPost) {
         res.json(newPost)
     }).catch(err => {
-        console.log(err);
+        //console.log(err);
         res.status(500).json(err);
     });
 })
