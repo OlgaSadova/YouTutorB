@@ -12,17 +12,18 @@ module.exports = function (sequelize, DataTypes) {
         // },
 
         about :{
-            type: DataTypes.TEXT, 
+            type: DataTypes.TEXT
             // validate:{
             //     len: [1] // we should set maximun characters, not sure that 100 like here
             // }
         },
+        YearsofExperience: {
+            type: DataTypes.INTEGER
+        }
 //         dob: {
 //             type: DataTypes.DATEONLY, //format('YYYY-MM-DD')
 //         },
-        picture: {
-            type: DataTypes.STRING, // link?
-        }
+        
 
 
     });
