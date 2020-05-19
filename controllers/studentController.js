@@ -12,7 +12,7 @@ router.post("/api/userskills", function (req, res) {
                 skill: newSkill,
                 UserId: req.session.user.id
     }).then(result => {
-        console.log(result);
+        // console.log(result);
     }).catch(err => {
         console.log(err);
         
@@ -46,13 +46,15 @@ router.get("/posts/saved", function (req, res) {
 // new posts route
 
 router.post("/posts", function (req, res) {
-        console.log(req.body);
+        console.log(req.body.about);
         
     db.Studentpost.create({
-        post: req.body.post,
+        about: req.body.about,
         UserId: req.session.user.id
 
     }).then(function (newPost) {
+        console.log(newPost);
+        
         res.json(newPost)
     }).catch(err => {
         console.log(err);
