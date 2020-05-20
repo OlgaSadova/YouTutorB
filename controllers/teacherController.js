@@ -7,22 +7,55 @@ router.get("/signup/teacher", function (req, res) {
     res.render("index");
 });
 
+router.delete("/api/techerskillsdelete", function (req, res) {
+    console.log(req.session.user.id);
+     
+ db.TeacherSkill.destroy({
+     where: {
+         UserId: req.session.user.id
+     }
+ }).then(result => {
+     console.log("DELETED STUFF: " + result);
+     res.json(result)
+ }).catch(err => {
+     console.log(err);
+     res.status(500).json(err);
+ });
+ 
+    
+ })
+
+router.delete("/posts/deleteTeacher/currentuser", function (req, res) {
+    db.Teacher.destroy({
+
+        where: {
+            UserId: req.session.user.id
+        }
+    }).then(data => {
+        res.json(data);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+
 
 
 router.post("/skillsteacher", function (req, res) {
-    //console.log(req.body);
-    req.body.forEach(newSkill => {
-        //teaching skill comes from the front as a array and goes to TeachSkill table
-        //console.log(newSkill);
+    if(req.body) {
+        req.body.forEach(newSkill => {
+            db.TeacherSkill.create({
+                skill: newSkill,
+                UserId: req.session.user.id
+    }).then(result => {
+        //console.log(result);
+        res.json(result)
+    }).catch(err => {
+        console.log(err);
         
-        db.TeacherSkill.create({
-            skill: newSkill,
-            UserId : req.session.user.id
-        })
-    // console.log("skillsteacher");
-    
-    })
+    });
 })
+}})
 
 router.get("/getTeacherSkills/:id", function (req,res) {
     //console.log(req.params.id);

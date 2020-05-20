@@ -3,8 +3,24 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
+router.delete("/api/userskillsdelete", function (req, res) {
+   console.log(req.session.user.id);
+    
+db.StudentSkill.destroy({
+    where: {
+        UserId: req.session.user.id
+    }
+}).then(result => {
+    console.log("DELETED STUFF: " + result);
+    res.json(result)
+}).catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+});
 
-
+   
+})
+// Create student skills
 router.post("/api/userskills", function (req, res) {
     if(req.body) {
         req.body.forEach(newSkill => {
@@ -54,7 +70,7 @@ router.post("/posts", function (req, res) {
         UserId: req.session.user.id
 
     }).then(function (newPost) {
-        console.log(newPost);
+        // console.log(newPost);
         
         return res.json(newPost)
     }).catch(err => {
@@ -72,6 +88,20 @@ router.delete("/posts/:delete", function (req, res) {
         }
     }).then(data => {
         return res.json(data);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+
+router.delete("/posts/delete/currentuser", function (req, res) {
+    db.Studentpost.destroy({
+
+        where: {
+            UserId: req.session.user.id
+        }
+    }).then(data => {
+        res.json(data);
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
