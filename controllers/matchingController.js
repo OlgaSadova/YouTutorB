@@ -2,103 +2,116 @@ const db = require("../models");
 const express = require("express");
 const router = express.Router();
 
-
-//const DemoUserSkillsArr = ["SQL", "HTML", "JavaScript"] // the real data will come from req.data
-
+//student looking for teacher
 router.post("/api/matchteacherskills", (req, res) => {
+    const teacherResults = []
     const allTeachersID = []
-     //console.log("##########################", req.body)
-    const DemoUserSkillsArr= req.body
-    db.TeacherSkill.findAll(
-        {attributes: ["skill", "UserId"],
-        //include: [{model: models.Product, attributes:[]}],
+    const skillsLookingFor= ["HTML"] //JSON.parse(req.body.skills)
+    //console.log(req.body.skills, req.body)
+    //console.log(typeof(skillsLookingFor))
+
+
+    db.TeacherSkill.findAll( 
+        {attributes: ["skill", "UserId", "updatedAt"],
         where: {
-            skill: DemoUserSkillsArr //req.body.data
-        }}
+            skill: skillsLookingFor
+        },
+        include: [db.User]
+        }
+        
         )
         .then(skillsArr => {
-            //console.log(skillsArr)
+            //skillsArr.dataValues
+            //console.log("skillsArr^%$^%$^%$^%$^%$^$%^%$^%$^%$^%$^%$^%$^%$^", skillsArr)
             skillsArr.map(skill => {
                 allTeachersID.push(skill.dataValues.UserId)
             })
-            //arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])
             const HowManyTimesObj = allTeachersID.reduce(function(obj, b) {
                 obj[b] = ++obj[b] || 1;
                 return obj;
               }, {});
-
               const allTeacherFilterd = allTeachersID.filter(function(e, i){
                 return allTeachersID.indexOf(e) >= i;
             });
-            teacherResult = []
-        //console.log("allTeacherFilterd", allTeacherFilterd)
-        //console.log("HowManyTimesObj", HowManyTimesObj)
-        allTeacherFilterd.forEach(teacher => {
-            
-            //console.log(` teacher ${teacher} has ${HowManyTimesObj[teacher]} matches result witch is ${Math.floor((HowManyTimesObj[teacher])/(DemoUserSkillsArr.length)*100)}%`)
-            let test = {
-                teacherID : teacher,
-                percentageForYourSkills: Math.floor((HowManyTimesObj[teacher])/(DemoUserSkillsArr.length)*100)
-            }
-            teacherResult.push(test)
-            
+            skillsArr.forEach(result =>
+                console.log(result.dataValues))
+               // teacherResults.push(result.dataValues))
+            //console.log(skillsArr[0].User.dataValues)
+            //teacherResults.push
 
-            
-        });
-        res.json(teacherResult)
-        console.log(teacherResult)
-        //move "teacherResult" to the front
+        })
+        console.log(teacherResults.skill.TeacherSkill)
+        return res.json(teacherResults.skill.TeacherSkill)
+          
     })
-})
 
-
-
+//teacher looking for student
 router.post("/api/matchstudentskills", (req, res) => {
+    const studentResults = []
     const allStudentsID = []
-    const DemoUserSkillsArr= req.body
+    const skillsLookingFor= JSON.parse(req.body.skills)
     db.StudentSkill.findAll(
-        {attributes: ["skill", "UserId"],
-        //include: [{model: models.Product, attributes:[]}],
+        {attributes: ["skill", "UserId", "updatedAt"],
         where: {
-            skill: DemoUserSkillsArr //req.body.data
-        }}
+            skill: skillsLookingFor
+        },
+        include: [db.User]
+        }
         )
         .then(skillsArr => {
             skillsArr.map(skill => {
                 allStudentsID.push(skill.dataValues.UserId)
-                console.log("$$$$$$$$$$$$$$$$$$$########################################## allStudentsID",allStudentsID)
-                
-
             })
-            //arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])
             const HowManyTimesObj = allStudentsID.reduce(function(obj, b) {
                 obj[b] = ++obj[b] || 1;
                 return obj;
               }, {});
-              console.log("$$$$$$$$$$$$$$$$$$$###########################################HowManyTimesObj",HowManyTimesObj)
-
               const allStudentsFilterd = allStudentsID.filter(function(e, i){
                 return allStudentsID.indexOf(e) >= i;
             });
-            studentResult = []
-        console.log("allStudentsFilterd", allStudentsFilterd)
-        console.log("HowManyTimesObj", HowManyTimesObj)
-        allStudentsFilterd.forEach(student => {
-            
-            console.log(` teacher ${student} has ${HowManyTimesObj[student]} matches result witch is ${Math.floor((HowManyTimesObj[student])/(DemoUserSkillsArr.length)*100)}%`)
-            let test = {
-                studentID : student,
-                skillsYouCanLearnHim: HowManyTimesObj[student]
-            }
-            studentResult.push(test)
-            
 
+
+
+
+
+
+        db.User.findAll(
+            {attributes: ["id", "first_name", "last_name", "email", "picture"],
+            where: {
+                id: allStudentsFilterd
+            }}
+            ).then(users => {
+                console.log(users)
+                users.forEach(user => {
+                    allStudentsFilterd.forEach(student => {
+                    //console.log(` teacher ${student} has ${HowManyTimesObj[student]} matches result witch is ${Math.floor((HowManyTimesObj[student])/(skillsLookingFor.length)*100)}%`)
+                    let studentObj = {
+                        studentUserID : student,
+                        first_name: user.dataValues.first_name,
+                        last_name: user.dataValues.last_name,
+                        email: user.dataValues.email,
+                        picture: user.dataValues.picture,
+                        skillsYouCanLearnHim: HowManyTimesObj[student]
+                        //lastSkillUpdate: then we can sort by update 
+                    }
+                    console.log(studentObj)
+                    for(let i = 0; i < studentResults.length; i++) {
+                        if(studentResults.studentUserID === studentObj.studentUserID){
+                            return
+                        }
+                       
+                    }
+                    studentResults.push(studentObj)
+
+                 
+                    
+                 
+                    });
+                })     
+                return res.json(studentResults)
+            })
             
-        });
-        res.json(studentResult)
-        console.log(studentResult)
-        //move "teacherResult" to the front
-    })
+        })
 })
 
 

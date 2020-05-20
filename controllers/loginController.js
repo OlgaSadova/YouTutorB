@@ -31,7 +31,7 @@ router.post("/login", function (req, res) {
         else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
             req.session.user = dbUser
             
-            res.json(dbUser)
+            return res.json(dbUser)
         }
         
         else {
@@ -45,12 +45,12 @@ router.post("/login", function (req, res) {
 });
 
 router.get("/readsessions", (req, res) => {
-    res.json(req.session)
+    return res.json(req.session)
 })
 
 router.get("/logout",(req,res)=>{
     req.session.destroy();
-    res.json("logged out!")
+    return res.json("logged out!")
 })
 
 module.exports = router;

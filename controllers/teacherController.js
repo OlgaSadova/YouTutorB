@@ -34,7 +34,7 @@ router.get("/getTeacherSkills/:id", function (req,res) {
 
     })
     .then(list => {
-        res.json(list);
+        return res.json(list);
     })
     .catch(err => {
         console.log(err);
@@ -51,7 +51,7 @@ router.post("/signup/teacher", function (req, res) {
         UserId: req.session.user.id
 
     }).then(newTeacher => {
-        res.json(newTeacher)
+        return res.json(newTeacher)
         
     //console.log(newTeacher);
         

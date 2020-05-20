@@ -10,7 +10,7 @@ router.get("/api/searchresult", (req, res) => {
         {attributes: ["skill"],
         raw: true}
         ).then(skill => {        
-        res.json(skill)
+            return res.json(skill)
     })
 })
 module.exports = router;

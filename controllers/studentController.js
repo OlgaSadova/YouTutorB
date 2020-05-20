@@ -13,7 +13,7 @@ router.post("/api/userskills", function (req, res) {
                 UserId: req.session.user.id
     }).then(result => {
         //console.log(result);
-        res.json(result)
+        return res.json(result)
     }).catch(err => {
         console.log(err);
         
@@ -36,7 +36,7 @@ router.get("/posts/saved", function (req, res) {
             email: req.session.user.id
         }
     }).then(function (savedPost) {
-        res.json(savedPost)
+        return res.json(savedPost)
 
     }).catch(err => {
         console.log(err);
@@ -56,7 +56,7 @@ router.post("/posts", function (req, res) {
     }).then(function (newPost) {
         console.log(newPost);
         
-        res.json(newPost)
+        return res.json(newPost)
     }).catch(err => {
         //console.log(err);
         res.status(500).json(err);
@@ -71,7 +71,7 @@ router.delete("/posts/:delete", function (req, res) {
             id: req.params.id
         }
     }).then(data => {
-        res.json(data);
+        return res.json(data);
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
