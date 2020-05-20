@@ -23,8 +23,10 @@ router.post("/login", function (req, res) {
 
     }).then(dbUser => {
         //console.log(dbUser);
-        
-        if (!dbUser) {
+        if (req.session.user) {
+            res.json(dbUser)
+        }
+        else if (!dbUser) {
             req.session.user = false
             res.send("no user found")
         }

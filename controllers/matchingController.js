@@ -3,11 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 
-<<<<<<< HEAD
-const DemoUserSkillsArr = ["SQL", "MySQL","HTML"] // the real data will come from req.data
-=======
 const DemoUserSkillsArr = ["SQL", "HTML", "JavaScript"] // the real data will come from req.data
->>>>>>> development
 
 router.get("/api/matchskills", (req, res) => {
     const allTeachersID = []
@@ -55,8 +51,5 @@ router.get("/api/matchskills", (req, res) => {
 })
 
 module.exports = router;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> development

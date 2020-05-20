@@ -7,6 +7,21 @@ const bcrypt = require("bcrypt");
 
 router.post("/api/userskills", function (req, res) {
     if(req.body) {
+        db.StudentSkill.destroy({
+
+            where: {
+                id: req.session.user.id
+            }
+        }).then(data => {
+            res.json(data);
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+
+
+
+
         req.body.forEach(newSkill => {
             db.StudentSkill.create({
                 skill: newSkill,
