@@ -42,16 +42,24 @@ router.post("/api/matchteacherskills", (req, res) => {
             const test = []
             allTeacherFilterd.forEach(element => {
                 test.push({
-                    teacherID: element,
-                    studentResults: teacherResults,
+                    TeacherID: element,
+                    teacherResults: teacherResults,
                     percentage: (HowManyTimesObj[element]) / (skillsLookingFor.length) * 100
                 })
             });
-
-
+            console.log("^%$^%$^%$^$%^%$^$%^%$^$%^%$^$%^%$^%$^^$%^%$^%$", test)
             return res.json(test)
         })
 })
+
+
+
+
+
+
+
+
+
 //teacher looking for student
 router.post("/api/matchstudentskills", (req, res) => {
     const studentResults = []
