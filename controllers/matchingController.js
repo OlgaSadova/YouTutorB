@@ -6,7 +6,7 @@ const express = require("express");
 const router = express.Router();
 //student looking for teacher
 router.post("/api/matchteacherskills", (req, res) => {
-    const teacherResults = []
+    let teacherResults = []
     const allTeachersID = []
     const skillsLookingFor = req.body.skills.split(",")
     // console.log("OOOOOOOOOOOOOOOOOO", typeof(skillsLookingFor))
@@ -20,8 +20,7 @@ router.post("/api/matchteacherskills", (req, res) => {
         }
     )
         .then(skillsArr => {
-            //skillsArr.dataValues
-            console.log("skillsArr^%$^%$^%$^%$^%$^$%^%$^%$^%$^%$^%$^%$^%$^", skillsArr)
+           
             skillsArr.map(skill => {
                 allTeachersID.push(skill.dataValues.UserId)
             })
@@ -32,29 +31,37 @@ router.post("/api/matchteacherskills", (req, res) => {
             const allTeacherFilterd = allTeachersID.filter(function (e, i) {
                 return allTeachersID.indexOf(e) >= i;
             });
-            skillsArr.forEach(result => teacherResults.push(result.dataValues))
-            //console.log("HowManyTimesObjFFFFFFFFFFFFFFFFFFF%#$%#$%#$%$#",HowManyTimesObj)
-            //console.log("HowManyTimesObjFFFFFFFFFFFFFFFFFFF%#$%#$%#$%$#",allTeacherFilterd)
-            //teacherResults.push
-            allTeacherFilterd.forEach(teacher => {
-                console.log(` teacher ${teacher} has ${HowManyTimesObj[teacher]} matches result witch is ${(HowManyTimesObj[teacher]) / (skillsLookingFor.length) * 100}%`)
-            });
+            //skillsArr.forEach(result => teacherResults.push(result.dataValues))
+            
+            // allTeacherFilterd.forEach(teacher => {
+            //     console.log(` teacher ${teacher} has ${HowManyTimesObj[teacher]} matches result witch is ${(HowManyTimesObj[teacher]) / (skillsLookingFor.length) * 100}%`)
+            // });
             const test = []
             allTeacherFilterd.forEach(element => {
+                teacherResults = []
+                console.log(element)
+                
+                skillsArr.forEach(result => {
+                    console.log("^%$^%$^&%$^&%$^&%^&^%&^%", result)
+                    if(element===result.dataValues.UserId)teacherResults.push(result.dataValues)
+                })
                 test.push({
                     teacherID: element,
-                    studentResults: teacherResults,
+                    teacherResults: teacherResults,
                     percentage: (HowManyTimesObj[element]) / (skillsLookingFor.length) * 100
                 })
             });
-            console.log("^%$^%$^%$^$%^%$^$%^%$^$%^%$^$%^%$^%$^^$%^%$^%$", test)
+
 
             return res.json(test)
         })
 })
+
+
+
 //teacher looking for student
 router.post("/api/matchstudentskills", (req, res) => {
-    const studentResults = []
+    let studentResults = []
     const allStudentsID = []
     const skillsLookingFor = req.body.skills.split(",")
     db.StudentSkill.findAll(
@@ -79,21 +86,29 @@ router.post("/api/matchstudentskills", (req, res) => {
             const allStudentFilterd = allStudentsID.filter(function (e, i) {
                 return allStudentsID.indexOf(e) >= i;
             });
-            skillsArr.forEach(result => studentResults.push(result.dataValues))
-            allStudentFilterd.forEach(teacher => {
-                console.log(` teacher ${teacher} has ${HowManyTimesObj[teacher]} matches result witch is ${(HowManyTimesObj[teacher]) / (skillsLookingFor.length) * 100}%`)
+            // skillsArr.forEach(result => studentResults.push(result.dataValues))
+            // allStudentFilterd.forEach(teacher => {
+            //     console.log(` teacher ${teacher} has ${HowManyTimesObj[teacher]} matches result witch is ${(HowManyTimesObj[teacher]) / (skillsLookingFor.length) * 100}%`)
                 
                 
-            })
+            // })
             const test = []
             allStudentFilterd.forEach(element => {
+                studentResults = []
+                console.log(element)
+                
+                skillsArr.forEach(result => {
+                    console.log("^%$^%$^&%$^&%$^&%^&^%&^%", result)
+                    if(element===result.dataValues.UserId)studentResults.push(result.dataValues)
+                })
                 test.push({
                     studentID: element,
                     studentResults: studentResults,
                     percentage: (HowManyTimesObj[element]) / (skillsLookingFor.length) * 100
                 })
             });
-            console.log("^%$^%$^%$^$%^%$^$%^%$^$%^%$^$%^%$^%$^^$%^%$^%$", test)
+
+
             return res.json(test)
             
 
