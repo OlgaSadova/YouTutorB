@@ -9,6 +9,7 @@ router.post("/api/matchteacherskills", (req, res) => {
     const teacherResults = []
     const allTeachersID = []
     const skillsLookingFor = req.body.skills.split(",")
+    // console.log("OOOOOOOOOOOOOOOOOO", typeof(skillsLookingFor))
     db.TeacherSkill.findAll(
         {
             attributes: ["skill", "UserId", "updatedAt"],
@@ -20,7 +21,7 @@ router.post("/api/matchteacherskills", (req, res) => {
     )
         .then(skillsArr => {
             //skillsArr.dataValues
-            //console.log("skillsArr^%$^%$^%$^%$^%$^$%^%$^%$^%$^%$^%$^%$^%$^", skillsArr)
+            console.log("skillsArr^%$^%$^%$^%$^%$^$%^%$^%$^%$^%$^%$^%$^%$^", skillsArr)
             skillsArr.map(skill => {
                 allTeachersID.push(skill.dataValues.UserId)
             })
