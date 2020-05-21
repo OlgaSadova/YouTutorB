@@ -48,6 +48,10 @@ router.post("/api/matchteacherskills", (req, res) => {
                 })
             });
             console.log("^%$^%$^%$^$%^%$^$%^%$^$%^%$^$%^%$^%$^^$%^%$^%$", test)
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5500bbf6b0fc2bc49964ad52ab7556d36ba45df
             return res.json(test)
         })
 })
