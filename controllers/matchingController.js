@@ -47,7 +47,7 @@ router.post("/api/matchteacherskills", (req, res) => {
                     percentage: (HowManyTimesObj[element]) / (skillsLookingFor.length) * 100
                 })
             });
-
+            console.log("^%$^%$^%$^$%^%$^$%^%$^$%^%$^$%^%$^%$^^$%^%$^%$", test)
 
             return res.json(test)
         })
